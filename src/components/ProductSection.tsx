@@ -1,12 +1,15 @@
 import { useState } from "react";
-import { Search, MessageCircle } from "lucide-react";
+import { Search, MessageCircle, Star, StarHalf } from "lucide-react";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
 import storeData from "../data/store-data.json";
 
 export const ProductSection = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedSizes, setSelectedSizes] = useState<Record<number, string>>({});
+  const [selectedColors, setSelectedColors] = useState<Record<number, string>>({});
 
   const filteredProducts = storeData.products.filter(
     (product) =>
@@ -15,11 +18,29 @@ export const ProductSection = () => {
   );
 
   const handleWhatsApp = (product: typeof storeData.products[0]) => {
-    const message = `Hi! I'm interested in purchasing the ${product.name} for $${product.price}`;
+    const size = selectedSizes[product.id] || product.sizes[0];
+    const color = selectedColors[product.id] || product.colors[0];
+    const message = `Hi! I'm interested in purchasing the ${product.name} (${color}, Size ${size}) for $${product.price}`;
     const url = `https://wa.me/${storeData.brand.whatsapp}?text=${encodeURIComponent(
       message
     )}`;
     window.open(url, "_blank");
+  };
+
+  const renderStars = (rating: number) => {
+    const stars = [];
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 >= 0.5;
+
+    for (let i = 0; i < fullStars; i++) {
+      stars.push(<Star key={i} className="w-4 h-4 fill-primary text-primary" />);
+    }
+
+    if (hasHalfStar) {
+      stars.push(<StarHalf key="half" className="w-4 h-4 fill-primary text-primary" />);
+    }
+
+    return stars;
   };
 
   return (
@@ -61,15 +82,62 @@ export const ProductSection = () => {
               className="w-full h-64 object-cover"
             />
             <div className="p-4">
-              <h3 className="text-xl font-semibold mb-2">{product.name}</h3>
-              <p className="text-muted-foreground mb-4">{product.description}</p>
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between mb-2">
+                <h3 className="text-xl font-semibold">{product.name}</h3>
                 <span className="text-lg font-bold">${product.price}</span>
-                <Button onClick={() => handleWhatsApp(product)}>
-                  <MessageCircle className="mr-2 h-4 w-4" />
-                  Buy on WhatsApp
-                </Button>
               </div>
+              
+              <p className="text-muted-foreground mb-4">{product.description}</p>
+              
+              <div className="flex items-center gap-1 mb-3">
+                {renderStars(product.rating)}
+                <span className="text-sm text-muted-foreground ml-2">
+                  ({product.reviewCount} reviews)
+                </span>
+              </div>
+
+              <div className="space-y-3 mb-4">
+                <Select
+                  value={selectedSizes[product.id] || product.sizes[0]}
+                  onValueChange={(value) => 
+                    setSelectedSizes((prev) => ({ ...prev, [product.id]: value }))
+                  }
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select size" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {product.sizes.map((size) => (
+                      <SelectItem key={size} value={size}>
+                        Size {size}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+
+                <Select
+                  value={selectedColors[product.id] || product.colors[0]}
+                  onValueChange={(value) =>
+                    setSelectedColors((prev) => ({ ...prev, [product.id]: value }))
+                  }
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select color" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {product.colors.map((color) => (
+                      <SelectItem key={color} value={color}>
+                        {color}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <Button onClick={() => handleWhatsApp(product)} className="w-full">
+                <MessageCircle className="mr-2 h-4 w-4" />
+                Buy on WhatsApp
+              </Button>
             </div>
           </div>
         ))}

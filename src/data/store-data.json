@@ -17,7 +17,11 @@
       "category": "Formal",
       "price": 89.99,
       "description": "Timeless white Oxford shirt made from premium cotton",
-      "image": "/placeholder.svg"
+      "image": "/placeholder.svg",
+      "sizes": ["S", "M", "L", "XL"],
+      "colors": ["White", "Light Blue", "Pink"],
+      "rating": 4.8,
+      "reviewCount": 124
     },
     {
       "id": 2,
@@ -25,7 +29,11 @@
       "category": "Casual",
       "price": 69.99,
       "description": "Comfortable denim shirt perfect for everyday wear",
-      "image": "/placeholder.svg"
+      "image": "/placeholder.svg",
+      "sizes": ["M", "L", "XL", "XXL"],
+      "colors": ["Light Denim", "Dark Denim", "Black"],
+      "rating": 4.6,
+      "reviewCount": 89
     },
     {
       "id": 3,
@@ -33,7 +41,11 @@
       "category": "Limited Edition",
       "price": 129.99,
       "description": "Luxurious silk blend shirt in exclusive patterns",
-      "image": "/placeholder.svg"
+      "image": "/placeholder.svg",
+      "sizes": ["S", "M", "L"],
+      "colors": ["Navy", "Burgundy", "Forest Green"],
+      "rating": 5.0,
+      "reviewCount": 45
     }
   ],
   "reviews": [
