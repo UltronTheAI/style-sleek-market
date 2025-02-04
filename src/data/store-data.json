@@ -1,0 +1,62 @@
+{
+  "brand": {
+    "name": "Artisan Shirts",
+    "tagline": "Handcrafted Quality, Timeless Style",
+    "description": "Each shirt is carefully crafted with attention to detail and premium materials, ensuring both comfort and durability. Our commitment to quality makes each piece unique and special.",
+    "whatsapp": "+1234567890",
+    "email": "contact@artisanshirts.com",
+    "phone": "(123) 456-7890",
+    "address": "123 Fashion Street, Design District, City",
+    "mapUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387193.30596073366!2d-74.25986652089843!3d40.69714941932609!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY!5e0!3m2!1sen!2sus!4v1636619584099!5m2!1sen!2sus"
+  },
+  "categories": ["All", "Casual", "Formal", "Limited Edition"],
+  "products": [
+    {
+      "id": 1,
+      "name": "Classic White Oxford",
+      "category": "Formal",
+      "price": 89.99,
+      "description": "Timeless white Oxford shirt made from premium cotton",
+      "image": "/placeholder.svg"
+    },
+    {
+      "id": 2,
+      "name": "Casual Denim Shirt",
+      "category": "Casual",
+      "price": 69.99,
+      "description": "Comfortable denim shirt perfect for everyday wear",
+      "image": "/placeholder.svg"
+    },
+    {
+      "id": 3,
+      "name": "Limited Edition Silk Blend",
+      "category": "Limited Edition",
+      "price": 129.99,
+      "description": "Luxurious silk blend shirt in exclusive patterns",
+      "image": "/placeholder.svg"
+    }
+  ],
+  "reviews": [
+    {
+      "id": 1,
+      "name": "John D.",
+      "rating": 5,
+      "comment": "The quality is outstanding. Best shirts I've ever owned!",
+      "date": "2024-01-15"
+    },
+    {
+      "id": 2,
+      "name": "Sarah M.",
+      "rating": 5,
+      "comment": "Beautiful craftsmanship and excellent customer service.",
+      "date": "2024-01-10"
+    },
+    {
+      "id": 3,
+      "name": "Michael R.",
+      "rating": 4,
+      "comment": "Great fit and very comfortable. Will buy again!",
+      "date": "2024-01-05"
+    }
+  ]
+}
